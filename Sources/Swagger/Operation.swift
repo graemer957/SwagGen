@@ -11,13 +11,13 @@ public struct Operation {
     public let operationParameters: [PossibleReference<Parameter>]
 
     public var parameters: [PossibleReference<Parameter>] {
-        return pathParameters.filter { pathParam in
+        pathParameters.filter { pathParam in
             !operationParameters.contains { $0.value.name == pathParam.value.name }
         } + operationParameters
     }
 
     public var bodyParam: PossibleReference<Parameter>? {
-        return parameters.first { $0.value.location == .body }
+        parameters.first { $0.value.location == .body }
     }
 
     public let responses: [OperationResponse]

@@ -37,23 +37,23 @@ public class Generator {
         public var removedFiles: [Path]
 
         public func generatedByState(_ state: GeneratedFile.State) -> [GeneratedFile] {
-            return generatedFiles.filter { $0.state == state }
+            generatedFiles.filter { $0.state == state }
         }
 
         public var hasChanged: Bool {
-            return generatedFiles.contains { $0.state != .unchanged } || !removedFiles.isEmpty
+            generatedFiles.contains { $0.state != .unchanged } || !removedFiles.isEmpty
         }
 
         public var createdFiles: [GeneratedFile] {
-            return generatedByState(.created)
+            generatedByState(.created)
         }
 
         public var modifiedFiles: [GeneratedFile] {
-            return generatedByState(.modified)
+            generatedByState(.modified)
         }
 
         public var unchangedFiles: [GeneratedFile] {
-            return generatedByState(.unchanged)
+            generatedByState(.unchanged)
         }
 
         public var description: String {

@@ -25,7 +25,7 @@ public class Reference<T: JSONObjectConvertible> {
     }
 
     public var swaggerObject: SwaggerObject<T> {
-        return SwaggerObject(name: name, value: value)
+        SwaggerObject(name: name, value: value)
     }
 
     func resolve(with value: T) {
@@ -39,11 +39,11 @@ public class Reference<T: JSONObjectConvertible> {
     }
 
     public var referenceType: String? {
-        return getReferenceComponent(index: 1)
+        getReferenceComponent(index: 1)
     }
 
     public var referenceName: String? {
-        return getReferenceComponent(index: 2)
+        getReferenceComponent(index: 2)
     }
 }
 

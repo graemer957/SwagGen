@@ -7,7 +7,7 @@ extension Path: JSONPrimitiveConvertible {
     public typealias JSONType = String
 
     public static func from(jsonValue: String) -> Path? {
-        return Path(jsonValue)
+        Path(jsonValue)
     }
 }
 
@@ -62,7 +62,7 @@ func + (lhs: [String: Any?], rhs: [String: Any?]) -> [String: Any] {
 extension String {
 
     private func camelCased(seperator: String) -> String {
-        return components(separatedBy: seperator).map { $0.mapFirstChar { $0.uppercased() } }.joined(separator: "")
+        components(separatedBy: seperator).map { $0.mapFirstChar { $0.uppercased() } }.joined(separator: "")
     }
 
     private func mapFirstChar(transform: (String) -> String) -> String {
@@ -74,7 +74,7 @@ extension String {
     }
 
     private func camelCased() -> String {
-        return camelCased(seperator: " ")
+        camelCased(seperator: " ")
             .camelCased(seperator: "_")
             .camelCased(seperator: "-")
             .camelCased(seperator: ".")
@@ -92,14 +92,14 @@ extension String {
     }
 
     func upperCamelCased() -> String {
-        return camelCased().mapFirstChar { $0.uppercased() }
+        camelCased().mapFirstChar { $0.uppercased() }
     }
 }
 
 extension Dictionary {
 
     public var prettyPrinted: String {
-        return recursivePrint()
+        recursivePrint()
     }
 
     public func recursivePrint(indentIndex: Int = 0, indentString: String = "  ", arrayIdentifier: String = "- ") -> String {
@@ -139,5 +139,5 @@ extension Dictionary {
 }
 
 public func getCountString(counts: [(type: String, count: Int)], pluralise: Bool) -> String {
-    return counts.filter { $0.count > 0 }.map { "\($0.count) \($0.count == 1 || !pluralise ? $0.type : "\($0.type)s")" }.joined(separator: ", ")
+    counts.filter { $0.count > 0 }.map { "\($0.count) \($0.count == 1 || !pluralise ? $0.type : "\($0.type)s")" }.joined(separator: ", ")
 }

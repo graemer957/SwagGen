@@ -42,7 +42,7 @@ extension SwaggerSpec {
     }
 
     var enums: [Enum] {
-        return parameters.compactMap { $0.value.getEnum(name: $0.name, description: $0.value.description) }
+        parameters.compactMap { $0.value.getEnum(name: $0.name, description: $0.value.description) }
     }
 }
 
@@ -70,7 +70,7 @@ extension Schema {
     }
 
     var properties: [Property] {
-        return requiredProperties + optionalProperties
+        requiredProperties + optionalProperties
     }
 
     var requiredProperties: [Property] {
@@ -102,15 +102,15 @@ extension Schema {
     }
 
     var parentProperties: [Property] {
-        return parentRequiredProperties + parentOptionalProperties
+        parentRequiredProperties + parentOptionalProperties
     }
 
     private var parentRequiredProperties: [Property] {
-        return (parent?.value.parentRequiredProperties ?? []) + requiredProperties
+        (parent?.value.parentRequiredProperties ?? []) + requiredProperties
     }
 
     private var parentOptionalProperties: [Property] {
-        return (parent?.value.parentOptionalProperties ?? []) + optionalProperties
+        (parent?.value.parentOptionalProperties ?? []) + optionalProperties
     }
 
     func getEnum(name: String, description: String?) -> Enum? {
@@ -154,19 +154,19 @@ extension Schema {
 extension Swagger.Operation {
 
     func getParameters(type: ParameterLocation) -> [Parameter] {
-        return parameters.map { $0.value }.filter { $0.location == type }
+        parameters.map { $0.value }.filter { $0.location == type }
     }
 
     var enums: [Enum] {
-        return requestEnums + responseEnums
+        requestEnums + responseEnums
     }
 
     var requestEnums: [Enum] {
-        return parameters.compactMap { $0.value.enumValue }
+        parameters.compactMap { $0.value.enumValue }
     }
 
     var responseEnums: [Enum] {
-        return responses.compactMap { $0.enumValue }
+        responses.compactMap { $0.enumValue }
     }
 }
 
@@ -191,7 +191,7 @@ extension ObjectSchema {
 extension OperationResponse {
 
     public var successful: Bool {
-        return statusCode?.description.hasPrefix("2") ?? false
+        statusCode?.description.hasPrefix("2") ?? false
     }
 
     public var name: String {
@@ -203,22 +203,22 @@ extension OperationResponse {
     }
 
     var isEnum: Bool {
-        return enumValue != nil
+        enumValue != nil
     }
 
     var enumValue: Enum? {
-        return response.value.schema?.getEnum(name: name, description: response.value.description)
+        response.value.schema?.getEnum(name: name, description: response.value.description)
     }
 }
 
 extension Property {
 
     var isEnum: Bool {
-        return enumValue != nil
+        enumValue != nil
     }
 
     var enumValue: Enum? {
-        return schema.getEnum(name: name, description: schema.metadata.description)
+        schema.getEnum(name: name, description: schema.metadata.description)
     }
 }
 
@@ -232,11 +232,11 @@ extension Parameter {
     }
 
     var isEnum: Bool {
-        return enumValue != nil
+        enumValue != nil
     }
 
     var enumValue: Enum? {
-        return getEnum(name: name, description: description)
+        getEnum(name: name, description: description)
     }
 }
 

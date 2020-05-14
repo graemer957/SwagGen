@@ -20,15 +20,15 @@ public class CodeFormatter {
     }
 
     var disallowedNames: [String] {
-        return []
+        []
     }
 
     var disallowedTypes: [String] {
-        return []
+        []
     }
 
     public func getContext() -> [String: Any] {
-        return getSpecContext().clean()
+        getSpecContext().clean()
     }
 
     func getSpecContext() -> Context {
@@ -378,11 +378,11 @@ public class CodeFormatter {
     }
 
     func getEnumType(_ name: String) -> String {
-        return escapeType("\(modelPrefix ?? "")\(name.upperCamelCased())")
+        escapeType("\(modelPrefix ?? "")\(name.upperCamelCased())")
     }
 
     func getItemType(name: String, item: Item, checkEnum: Bool = true) -> String {
-        return "UNKNOWN_ITEM_TYPE"
+        "UNKNOWN_ITEM_TYPE"
     }
 
     func getModelType(_ name: String) -> String {
@@ -391,7 +391,7 @@ public class CodeFormatter {
     }
 
     func getSchemaType(name: String, schema: Schema, checkEnum: Bool = true) -> String {
-        return "UNKNOWN_SCHEMA_TYPE"
+        "UNKNOWN_SCHEMA_TYPE"
     }
 
     // MARK: escaping
@@ -407,10 +407,10 @@ public class CodeFormatter {
     }
 
     func getEscapedType(_ type: String) -> String {
-        return "_\(type)"
+        "_\(type)"
     }
 
     func getEscapedName(_ name: String) -> String {
-        return "_\(name)"
+        "_\(name)"
     }
 }

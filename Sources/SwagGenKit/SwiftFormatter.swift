@@ -4,7 +4,7 @@ import Swagger
 public class SwiftFormatter: CodeFormatter {
 
     var disallowedKeywords: [String] {
-        return [
+        [
             "Type",
             "class",
             "struct",
@@ -67,8 +67,8 @@ public class SwiftFormatter: CodeFormatter {
         "Data",
     ]
 
-    override var disallowedNames: [String] { return disallowedKeywords + inbuiltTypes }
-    override var disallowedTypes: [String] { return disallowedKeywords + inbuiltTypes }
+    override var disallowedNames: [String] { disallowedKeywords + inbuiltTypes }
+    override var disallowedTypes: [String] { disallowedKeywords + inbuiltTypes }
 
     let fixedWidthIntegers: Bool
 
@@ -281,6 +281,6 @@ public class SwiftFormatter: CodeFormatter {
     }
 
     override func getEscapedName(_ name: String) -> String {
-        return "`\(name)`"
+        "`\(name)`"
     }
 }

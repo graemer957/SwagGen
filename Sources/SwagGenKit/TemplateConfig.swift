@@ -33,7 +33,7 @@ public struct TemplateConfig {
     }
 
     public func getStringOption(_ option: String) -> String? {
-        return options[option] as? String
+        options[option] as? String
     }
 
     public func getBooleanOption(_ option: String) -> Bool {
