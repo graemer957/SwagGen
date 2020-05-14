@@ -4,7 +4,6 @@ import Spectre
 @testable import Swagger
 
 public func testParsing() {
-
     describe("swagger spec") {
         $0.it("throws error on missing version") {
             let specString = "{}"

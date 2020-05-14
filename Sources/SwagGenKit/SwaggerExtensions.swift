@@ -25,7 +25,6 @@ struct ResponseFormatter {
 }
 
 extension SwaggerSpec {
-
     var operationsByTag: [String: [Swagger.Operation]] {
         var dictionary: [String: [Swagger.Operation]] = [:]
 
@@ -47,7 +46,6 @@ extension SwaggerSpec {
 }
 
 extension Metadata {
-
     func getEnum(name: String, type: Enum.EnumType, description: String?) -> Enum? {
         if let enumValues = enumeratedValues {
             return Enum(name: name, cases: enumValues.compactMap { $0 }, type: type, description: description ?? self.description, metadata: self)
@@ -57,7 +55,6 @@ extension Metadata {
 }
 
 extension Schema {
-
     var parent: SwaggerObject<Schema>? {
         if case let .allOf(object) = type {
             for schema in object.subschemas {
@@ -152,7 +149,6 @@ extension Schema {
 }
 
 extension Swagger.Operation {
-
     func getParameters(type: ParameterLocation) -> [Parameter] {
         parameters.map { $0.value }.filter { $0.location == type }
     }
@@ -171,7 +167,6 @@ extension Swagger.Operation {
 }
 
 extension ObjectSchema {
-
     var enums: [Enum] {
         var enums: [Enum] = []
         for property in properties {
@@ -189,7 +184,6 @@ extension ObjectSchema {
 }
 
 extension OperationResponse {
-
     public var successful: Bool {
         statusCode?.description.hasPrefix("2") ?? false
     }
@@ -212,7 +206,6 @@ extension OperationResponse {
 }
 
 extension Property {
-
     var isEnum: Bool {
         enumValue != nil
     }
@@ -223,7 +216,6 @@ extension Property {
 }
 
 extension Parameter {
-
     func getEnum(name: String, description: String?) -> Enum? {
         switch type {
         case let .body(schema): return schema.getEnum(name: name, description: description)
@@ -241,7 +233,6 @@ extension Parameter {
 }
 
 extension SimpleType {
-
     var canBeEnum: Bool {
         switch self {
         case .string, .integer, .number:
@@ -252,9 +243,7 @@ extension SimpleType {
 }
 
 extension Item {
-
     func getEnum(name: String, description: String?) -> Enum? {
-
         switch type {
         case let .array(array):
             if case let .simpleType(simpleType) = array.items.type {

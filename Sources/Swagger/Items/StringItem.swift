@@ -7,7 +7,6 @@ public struct StringItem {
 }
 
 public enum StringFormat: RawRepresentable {
-
     case format(StringFormatType)
     case other(String)
 
@@ -42,7 +41,6 @@ public enum StringFormat: RawRepresentable {
 }
 
 extension StringItem {
-
     public init(jsonDictionary: JSONDictionary) {
         format = jsonDictionary.json(atKeyPath: "format")
         maxLength = jsonDictionary.json(atKeyPath: "maxLength")

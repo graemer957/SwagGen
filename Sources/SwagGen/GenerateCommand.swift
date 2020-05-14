@@ -7,7 +7,6 @@ import Yams
 
 // TODO: remove custom newline spacing once https://github.com/jakeheis/SwiftCLI/pull/58 get's merged and integrated
 class GenerateCommand: Command {
-
     let name = "generate"
     let shortDescription = "Generates code for a Swagger spec"
 
@@ -97,7 +96,6 @@ class GenerateCommand: Command {
     }
 
     func generate(specURL: URL, templatePath: PathKit.Path, destinationPath: PathKit.Path, clean: Generator.Clean, options: [String: Any]) {
-
         let spec: SwaggerSpec
         do {
             if specURL.scheme != nil {
@@ -144,7 +142,6 @@ class GenerateCommand: Command {
         }
         let codeFormatter: CodeFormatter
         if let formatter = templateConfig.formatter {
-
             switch formatter {
             case "swift":
                 codeFormatter = SwiftFormatter(spec: spec, templateConfig: templateConfig)
@@ -201,7 +198,6 @@ class GenerateCommand: Command {
 }
 
 extension Generator.Clean: ConvertibleFromString {
-
     public static func convert(from: String) -> Generator.Clean? {
         switch from {
         case "true", "yes", "all": return Generator.Clean.all

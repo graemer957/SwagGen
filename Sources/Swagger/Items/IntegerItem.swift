@@ -15,7 +15,6 @@ public enum IntegerFormat: String {
 }
 
 extension IntegerItem {
-
     public init(jsonDictionary: JSONDictionary) {
         format = jsonDictionary.json(atKeyPath: "format")
 

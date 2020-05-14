@@ -11,7 +11,6 @@ public enum DataType: String {
 }
 
 extension DataType {
-
     public init?(jsonDictionary: JSONDictionary) {
         if let typeString: String = jsonDictionary.json(atKeyPath: "type"),
             let dataType = DataType(rawValue: typeString) {

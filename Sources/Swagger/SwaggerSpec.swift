@@ -4,7 +4,6 @@ import PathKit
 import Yams
 
 public struct SwaggerSpec {
-
     public let json: [String: Any]
     public let version: String
     public let info: Info
@@ -45,7 +44,6 @@ public struct SwaggerObject<T: JSONObjectConvertible> {
 }
 
 extension SwaggerSpec {
-
     public init(url: URL) throws {
         let data: Data
         do {
@@ -72,7 +70,6 @@ extension SwaggerSpec {
 }
 
 extension SwaggerSpec: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         json = jsonDictionary
         version = String(describing: jsonDictionary["swagger"])
@@ -126,7 +123,6 @@ extension SwaggerSpec: JSONObjectConvertible {
     }
 
     func resolveReferences() {
-
         func resolvePossibleReference<T>(_ reference: PossibleReference<T>, objects: [SwaggerObject<T>], type: String) {
             if case let .reference(reference) = reference {
                 resolveReference(reference, objects: objects, type: type)

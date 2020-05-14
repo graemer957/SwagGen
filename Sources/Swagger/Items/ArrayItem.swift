@@ -1,7 +1,6 @@
 import JSONUtilities
 
 public struct ArrayItem {
-
     public let items: Item
     public let collectionFormat: CollectionFormat
     public let minItems: Int?
@@ -26,7 +25,6 @@ public enum CollectionFormat: String {
 }
 
 extension ArrayItem: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         items = try jsonDictionary.json(atKeyPath: "items")
         collectionFormat = jsonDictionary.json(atKeyPath: "collectionFormat") ?? .csv

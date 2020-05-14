@@ -6,7 +6,6 @@ public struct AllOfSchema {
 }
 
 extension AllOfSchema: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         subschemas = try jsonDictionary.json(atKeyPath: "allOf")
         abstract = jsonDictionary.json(atKeyPath: "x-abstract") ?? false

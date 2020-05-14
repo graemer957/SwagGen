@@ -3,7 +3,6 @@ import JSONUtilities
 import PathKit
 
 extension Path: JSONPrimitiveConvertible {
-
     public typealias JSONType = String
 
     public static func from(jsonValue: String) -> Path? {
@@ -12,7 +11,6 @@ extension Path: JSONPrimitiveConvertible {
 }
 
 extension String {
-
     static func getFirstDifferentLine(_ string1: String, _ string2: String) -> (string1: String, string2: String, line: Int)? {
         guard string1 != string2 else { return nil }
 
@@ -33,7 +31,6 @@ extension String {
 }
 
 extension Dictionary where Key == String, Value == Any? {
-
     func clean() -> [String: Any] {
         var clean: [String: Any] = [:]
         for (key, value) in self {
@@ -60,7 +57,6 @@ func + (lhs: [String: Any?], rhs: [String: Any?]) -> [String: Any] {
 }
 
 extension String {
-
     private func camelCased(seperator: String) -> String {
         components(separatedBy: seperator).map { $0.mapFirstChar { $0.uppercased() } }.joined(separator: "")
     }
@@ -81,7 +77,6 @@ extension String {
     }
 
     func lowerCamelCased() -> String {
-
         let string = camelCased()
 
         if string == string.uppercased() {
@@ -97,7 +92,6 @@ extension String {
 }
 
 extension Dictionary {
-
     public var prettyPrinted: String {
         recursivePrint()
     }

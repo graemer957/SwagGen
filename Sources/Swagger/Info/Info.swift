@@ -1,7 +1,6 @@
 import JSONUtilities
 
 public struct Info {
-
     public let title: String
     public let description: String?
     public let termsOfService: String?
@@ -11,7 +10,6 @@ public struct Info {
 }
 
 extension Info: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         title = try jsonDictionary.json(atKeyPath: "title")
         description = jsonDictionary.json(atKeyPath: "description")

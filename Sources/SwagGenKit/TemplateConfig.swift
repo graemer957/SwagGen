@@ -4,7 +4,6 @@ import PathKit
 import Yams
 
 public struct TemplateConfig {
-
     public let templateFiles: [TemplateFile]
     public let copiedFiles: [Path]
     public let basePath: Path
@@ -49,7 +48,6 @@ public struct TemplateConfig {
 }
 
 public struct TemplateFile: JSONObjectConvertible {
-
     public let path: String
     public let destination: String?
     public let context: String?

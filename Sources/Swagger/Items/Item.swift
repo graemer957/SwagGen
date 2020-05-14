@@ -11,7 +11,6 @@ public indirect enum ItemType {
 }
 
 extension Item: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         metadata = try Metadata(jsonDictionary: jsonDictionary)
         type = try ItemType(jsonDictionary: jsonDictionary)
@@ -19,7 +18,6 @@ extension Item: JSONObjectConvertible {
 }
 
 extension ItemType: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         if let simpleType = SimpleType(jsonDictionary: jsonDictionary) {
             self = .simpleType(simpleType)

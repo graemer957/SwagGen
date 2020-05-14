@@ -5,7 +5,6 @@ import Rainbow
 import Stencil
 
 public class Generator {
-
     var destination: Path
     var templateConfig: TemplateConfig
     let context: JSONDictionary

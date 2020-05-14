@@ -14,7 +14,6 @@ public struct ArraySchema {
 }
 
 extension ArraySchema: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         let itemsKey = "items"
         if let single: Schema = jsonDictionary.json(atKeyPath: .key(itemsKey)) {

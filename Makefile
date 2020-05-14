@@ -24,8 +24,7 @@ uninstall:
 	rm -f $(SHARE_PATH)
 
 format_code:
-	swiftformat Tests --wraparguments beforefirst --stripunusedargs closure-only --header strip --disable blankLinesAtStartOfScope
-	swiftformat Sources --wraparguments beforefirst --stripunusedargs closure-only --header strip --disable blankLinesAtStartOfScope
+	swiftformat Sources Tests
 
 update_brew:
 	sed -i '' 's|\(url ".*/archive/\)\(.*\)\(.tar\)|\1$(VERSION)\3|' Formula/SwagGen.rb

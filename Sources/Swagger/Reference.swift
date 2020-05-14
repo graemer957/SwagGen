@@ -1,7 +1,6 @@
 import JSONUtilities
 
 public class Reference<T: JSONObjectConvertible> {
-
     let string: String
 
     private var _value: T?
@@ -48,7 +47,6 @@ public class Reference<T: JSONObjectConvertible> {
 }
 
 public enum PossibleReference<T: JSONObjectConvertible>: JSONObjectConvertible {
-
     case reference(Reference<T>)
     case value(T)
 

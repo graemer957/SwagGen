@@ -12,7 +12,6 @@ public struct APIKeySchema {
 }
 
 extension APIKeySchema: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         headerName = try jsonDictionary.json(atKeyPath: "name")
         keyLocation = try jsonDictionary.json(atKeyPath: "in")

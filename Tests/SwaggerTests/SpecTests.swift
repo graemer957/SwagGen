@@ -4,7 +4,6 @@ import Spectre
 @testable import Swagger
 
 public func testSpecs() {
-
     describe("petstore spec") {
         let path = Path(#file) + "../../../Specs/petstore/spec.yml"
 
@@ -28,7 +27,6 @@ public func testSpecs() {
         }
 
         $0.describe("/pets path") {
-
             let path = spec.paths.first { $0.path == "/pets" }
 
             $0.it("has correct path") {
@@ -48,7 +46,6 @@ public func testSpecs() {
             }
 
             $0.describe("listPets operation") {
-
                 let operation = path?.operations.filter { $0.identifier == "listPets" }.first
                 $0.it("has get operation id") {
                     try expect(operation?.identifier) == "listPets"
@@ -72,7 +69,6 @@ public func testSpecs() {
         }
 
         $0.describe("/pets/{petId} path") {
-
             let path = spec.paths.first { $0.path == "/pets/{petId}" }
 
             $0.it("has correct path") {
@@ -88,7 +84,6 @@ public func testSpecs() {
             }
 
             $0.describe("showPetById operation") {
-
                 let operation = path?.operations.filter { $0.identifier == "showPetById" }.first
                 $0.it("has get operation id") {
                     try expect(operation?.identifier) == "showPetById"
@@ -118,7 +113,6 @@ public func testSpecs() {
             }
 
             $0.describe("updatePetWithForm operation") {
-
                 let operation = path?.operations.filter { $0.identifier == "updatePetWithForm" }.first
                 $0.it("has operation id") {
                     try expect(operation?.identifier) == "updatePetWithForm"

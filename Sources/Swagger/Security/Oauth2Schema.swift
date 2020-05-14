@@ -16,7 +16,6 @@ public struct OAuth2Schema {
 }
 
 extension OAuth2Schema: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         type = try jsonDictionary.json(atKeyPath: "flow")
         authorizationURL = jsonDictionary.json(atKeyPath: "authorizationUrl")

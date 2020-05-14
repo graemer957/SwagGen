@@ -2,7 +2,6 @@ import Foundation
 import JSONUtilities
 
 public enum SwaggerError: Error, CustomStringConvertible {
-
     case invalidVersion(String)
     case invalidItemType(JSONDictionary)
     case invalidSchemaType(JSONDictionary)
@@ -11,7 +10,6 @@ public enum SwaggerError: Error, CustomStringConvertible {
 
     public var description: String {
         switch self {
-
         case let .invalidVersion(version):
             return "Invalid version \(version)"
         case let .invalidItemType(dictionary):

@@ -12,7 +12,6 @@ public struct ObjectSchema {
 }
 
 extension ObjectSchema: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         let requiredPropertyNames: [String] = jsonDictionary.json(atKeyPath: "required") ?? []
         let propertiesByName: [String: Schema] = jsonDictionary.json(atKeyPath: "properties") ?? [:]

@@ -14,7 +14,6 @@ public enum SecuritySchemaType {
 }
 
 public struct SecuritySchema {
-
     public let json: [String: Any]
     public let name: String
     public let description: String?
@@ -22,7 +21,6 @@ public struct SecuritySchema {
 }
 
 extension SecuritySchema: NamedMappable {
-
     public init(name: String, jsonDictionary: JSONDictionary) throws {
         json = jsonDictionary
         self.name = name

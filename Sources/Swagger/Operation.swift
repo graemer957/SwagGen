@@ -1,7 +1,6 @@
 import JSONUtilities
 
 public struct Operation {
-
     public let json: [String: Any]
     public let path: String
     public let method: Method
@@ -39,7 +38,6 @@ public struct Operation {
 }
 
 extension Operation {
-
     public init(path: String, method: Method, pathParameters: [PossibleReference<Parameter>], jsonDictionary: JSONDictionary) throws {
         json = jsonDictionary
         self.path = path

@@ -15,7 +15,6 @@ public enum NumberFormat: String {
 }
 
 extension NumberItem {
-
     public init(jsonDictionary: JSONDictionary) {
         format = jsonDictionary.json(atKeyPath: "format")
         maximum = jsonDictionary.json(atKeyPath: "maximum")

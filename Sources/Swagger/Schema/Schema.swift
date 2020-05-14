@@ -15,7 +15,6 @@ public enum SchemaType {
 }
 
 extension Schema: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         metadata = try Metadata(jsonDictionary: jsonDictionary)
         type = try SchemaType(jsonDictionary: jsonDictionary)
@@ -23,7 +22,6 @@ extension Schema: JSONObjectConvertible {
 }
 
 extension SchemaType: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         if let simpleType = SimpleType(jsonDictionary: jsonDictionary) {
             self = .simple(simpleType)

@@ -1,7 +1,6 @@
 import JSONUtilities
 
 public struct Parameter {
-
     public let name: String
     public let location: ParameterLocation
     public let description: String?
@@ -32,7 +31,6 @@ public enum ParameterType {
 }
 
 extension Parameter: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         name = try jsonDictionary.json(atKeyPath: "name")
         location = try jsonDictionary.json(atKeyPath: "in")

@@ -2,7 +2,6 @@ import Foundation
 import Swagger
 
 public class SwiftFormatter: CodeFormatter {
-
     var disallowedKeywords: [String] {
         [
             "Type",
@@ -78,7 +77,6 @@ public class SwiftFormatter: CodeFormatter {
     }
 
     override func getItemType(name: String, item: Item, checkEnum: Bool = true) -> String {
-
         var enumValue: String?
         if checkEnum {
             enumValue = item.metadata.getEnum(name: name, type: .item(item), description: "").flatMap { getEnumContext($0)["enumName"] as? String }
@@ -192,7 +190,6 @@ public class SwiftFormatter: CodeFormatter {
         var context = super.getSchemaContext(schema)
 
         if case let .object(objectSchema) = schema.type {
-
             switch objectSchema.additionalProperties {
             case let .bool(bool):
                 if bool {

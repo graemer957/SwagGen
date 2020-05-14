@@ -6,14 +6,12 @@ public struct OperationResponse {
 }
 
 public struct Response {
-
     public let description: String
     public let schema: Schema?
     public let headers: [String: Item]
 }
 
 extension Response: JSONObjectConvertible {
-
     public init(jsonDictionary: JSONDictionary) throws {
         description = try jsonDictionary.json(atKeyPath: "description")
         schema = jsonDictionary.json(atKeyPath: "schema")

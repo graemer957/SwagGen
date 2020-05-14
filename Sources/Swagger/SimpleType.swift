@@ -9,7 +9,6 @@ public enum SimpleType {
 }
 
 extension SimpleType {
-
     public init?(jsonDictionary: JSONDictionary) {
         if let typeString: String = jsonDictionary.json(atKeyPath: "type"),
             let dataType = DataType(rawValue: typeString) {

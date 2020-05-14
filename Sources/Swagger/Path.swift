@@ -1,14 +1,12 @@
 import JSONUtilities
 
 public struct Path {
-
     public let path: String
     public let operations: [Operation]
     public let parameters: [PossibleReference<Parameter>]
 }
 
 extension Path: NamedMappable {
-
     public init(name: String, jsonDictionary: JSONDictionary) throws {
         path = name
         parameters = jsonDictionary.json(atKeyPath: "parameters") ?? []

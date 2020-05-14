@@ -4,7 +4,6 @@ import Swagger
 typealias Context = [String: Any?]
 
 public class CodeFormatter {
-
     var spec: SwaggerSpec
     var filenames: [String] = []
     var enums: [Enum] = []
@@ -108,7 +107,6 @@ public class CodeFormatter {
     }
 
     func getInlineSchemaContext(_ schema: Schema, name: String) -> Context? {
-
         guard schema.generateInlineSchema else { return nil }
 
         var context: Context = [:]
@@ -381,7 +379,7 @@ public class CodeFormatter {
         escapeType("\(modelPrefix ?? "")\(name.upperCamelCased())")
     }
 
-    func getItemType(name: String, item: Item, checkEnum: Bool = true) -> String {
+    func getItemType(name _: String, item _: Item, checkEnum _: Bool = true) -> String {
         "UNKNOWN_ITEM_TYPE"
     }
 
@@ -390,7 +388,7 @@ public class CodeFormatter {
         return escapeType("\(modelPrefix ?? "")\(type)\(modelSuffix ?? "")")
     }
 
-    func getSchemaType(name: String, schema: Schema, checkEnum: Bool = true) -> String {
+    func getSchemaType(name _: String, schema _: Schema, checkEnum _: Bool = true) -> String {
         "UNKNOWN_SCHEMA_TYPE"
     }
 
