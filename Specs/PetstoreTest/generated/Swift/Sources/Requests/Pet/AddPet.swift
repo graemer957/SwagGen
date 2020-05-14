@@ -3,61 +3,102 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
 extension PetstoreTest.Pet {
 
+    
     public enum AddPet {
 
         public static let service = APIService<Response>(id: "addPet", tag: "pet", method: "POST", path: "/pet", hasBody: true, authorization: Authorization(type: "petstore_auth", scope: "write:pets"))
+        
 
         public final class Request: APIRequest<Response> {
+            
+            
+            
 
             public var body: Pet
+            
 
             public init(body: Pet) {
+                
                 self.body = body
+                
+                
                 super.init(service: AddPet.service) {
                     let jsonEncoder = JSONEncoder()
                     return try jsonEncoder.encode(body)
                 }
             }
+            
+            
+            
         }
 
         public enum Response: APIResponseValue, CustomStringConvertible, CustomDebugStringConvertible {
+            
+            
             public typealias SuccessType = Void
+            
+            
 
             /** Invalid input */
+            
+            
             case status405
+            
+            
 
             public var success: Void? {
                 switch self {
+                
+                
                 default: return nil
+                
                 }
             }
+            
 
             public var response: Any {
                 switch self {
+                
+                
                 default: return ()
+                
                 }
             }
 
             public var statusCode: Int {
                 switch self {
+                
+                
                 case .status405: return 405
+                
+                
                 }
             }
 
             public var successful: Bool {
                 switch self {
+                
                 case .status405: return false
+                
                 }
             }
 
             public init(statusCode: Int, data: Data) throws {
+                
                 switch statusCode {
+                
+                
                 case 405: self = .status405
+                
+                
+                
                 default: throw APIError.unexpectedStatusCode(statusCode: statusCode, data: data)
+                
                 }
             }
 

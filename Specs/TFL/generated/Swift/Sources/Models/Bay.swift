@@ -3,60 +3,129 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class Bay: Codable, Equatable {
+    
+    
 
+    
     public var bayCount: Int?
+    
 
+    
     public var bayType: String?
+    
 
+    
     public var free: Int?
+    
 
+    
     public var occupied: Int?
+    
+    
+    
 
     public init(bayCount: Int? = nil, bayType: String? = nil, free: Int? = nil, occupied: Int? = nil) {
+        
         self.bayCount = bayCount
+        
         self.bayType = bayType
+        
         self.free = free
+        
         self.occupied = occupied
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case bayCount
+        
         case bayType
+        
         case free
+        
         case occupied
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         bayCount = try container.decodeIfPresent(.bayCount)
+        
         bayType = try container.decodeIfPresent(.bayType)
+        
         free = try container.decodeIfPresent(.free)
+        
         occupied = try container.decodeIfPresent(.occupied)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(bayCount, forKey: .bayCount)
+        
         try container.encodeIfPresent(bayType, forKey: .bayType)
+        
         try container.encodeIfPresent(free, forKey: .free)
+        
         try container.encodeIfPresent(occupied, forKey: .occupied)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? Bay else { return false }
+      
+      
+      
       guard self.bayCount == object.bayCount else { return false }
+      
+      
+      
       guard self.bayType == object.bayType else { return false }
+      
+      
+      
       guard self.free == object.free else { return false }
+      
+      
+      
       guard self.occupied == object.occupied else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: Bay, rhs: Bay) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

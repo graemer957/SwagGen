@@ -3,15 +3,27 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
+
 /** What to order by. */
+
 public enum ListOrderBy: String, Codable {
+    
     case az = "a-z"
+    
     case releaseYear = "release-year"
+    
     case dateAdded = "date-added"
+    
 
     public static let cases: [ListOrderBy] = [
+      
       .az,
+      
       .releaseYear,
+      
       .dateAdded,
+      
     ]
 }
+

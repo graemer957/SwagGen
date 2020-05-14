@@ -3,15 +3,27 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
+
 /** The maximum resolution the device to playback the media can present. */
+
 public enum MediaFileResolution: String, Codable {
+    
     case hd1080 = "HD-1080"
+    
     case hd720 = "HD-720"
+    
     case sd = "SD"
+    
 
     public static let cases: [MediaFileResolution] = [
+      
       .hd1080,
+      
       .hd720,
+      
       .sd,
+      
     ]
 }
+

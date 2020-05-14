@@ -3,46 +3,97 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class LineModeGroup: Codable, Equatable {
+    
+    
 
+    
     public var lineIdentifier: [String]?
+    
 
+    
     public var modeName: String?
+    
+    
+    
 
     public init(lineIdentifier: [String]? = nil, modeName: String? = nil) {
+        
         self.lineIdentifier = lineIdentifier
+        
         self.modeName = modeName
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case lineIdentifier
+        
         case modeName
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         lineIdentifier = try container.decodeArrayIfPresent(.lineIdentifier)
+        
         modeName = try container.decodeIfPresent(.modeName)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(lineIdentifier, forKey: .lineIdentifier)
+        
         try container.encodeIfPresent(modeName, forKey: .modeName)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? LineModeGroup else { return false }
+      
+      
+      
       guard self.lineIdentifier == object.lineIdentifier else { return false }
+      
+      
+      
       guard self.modeName == object.modeName else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: LineModeGroup, rhs: LineModeGroup) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

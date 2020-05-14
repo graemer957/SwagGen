@@ -3,44 +3,81 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
-/** definition with additional properties */
-public class ModelWithAdditionalProperties: Codable, Equatable {
 
+/** definition with additional properties */
+
+
+public class ModelWithAdditionalProperties: Codable, Equatable {
+    
+    
+
+    
     public var name: String?
+    
+    
 
     public var additionalProperties: [String: Any] = [:]
+    
+    
 
     public init(name: String? = nil) {
+        
         self.name = name
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case name
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         name = try container.decodeIfPresent(.name)
+        
+        
+        
 
         let additionalPropertiesContainer = try decoder.container(keyedBy: StringCodingKey.self)
         var additionalProperties = try additionalPropertiesContainer.toDictionary()
+        
         additionalProperties.removeValue(forKey: "name")
+        
+        
         self.additionalProperties = additionalProperties
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(name, forKey: .name)
+        
+        
+        
 
         var additionalPropertiesContainer = encoder.container(keyedBy: StringCodingKey.self)
         for (key, value) in additionalProperties {
             try additionalPropertiesContainer.encodeAny(value, forKey: StringCodingKey(string: key))
         }
+        
+        
     }
+    
 
     public subscript(key: String) -> Any? {
         get {
@@ -50,15 +87,30 @@ public class ModelWithAdditionalProperties: Codable, Equatable {
             additionalProperties[key] = newValue
         }
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? ModelWithAdditionalProperties else { return false }
+      
+      
+      
       guard self.name == object.name else { return false }
+      
+      
+      
       guard NSDictionary(dictionary: self.additionalProperties).isEqual(to: object.additionalProperties) else { return false }
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: ModelWithAdditionalProperties, rhs: ModelWithAdditionalProperties) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

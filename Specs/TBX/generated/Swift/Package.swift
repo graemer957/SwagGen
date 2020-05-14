@@ -8,13 +8,19 @@ let package = Package(
         .library(name: "TBX", targets: ["TBX"])
     ],
     dependencies: [
+        
         .package(url: "https://github.com/Alamofire/Alamofire.git", .exact("4.7.2")),
+        
         .package(url: "https://github.com/antitypical/Result.git", .exact("4.0.0")),
+        
     ],
     targets: [
         .target(name: "TBX", dependencies: [
+          
           "Alamofire",
+          
           "Result",
+          
         ], path: "Sources")
     ]
 )

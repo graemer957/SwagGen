@@ -3,53 +3,113 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class ArrayTest: Codable, Equatable {
+    
+    
 
+    
     public var arrayArrayOfInteger: [[Int]]?
+    
 
+    
     public var arrayArrayOfModel: [[ReadOnlyFirst]]?
+    
 
+    
     public var arrayOfString: [String]?
+    
+    
+    
 
     public init(arrayArrayOfInteger: [[Int]]? = nil, arrayArrayOfModel: [[ReadOnlyFirst]]? = nil, arrayOfString: [String]? = nil) {
+        
         self.arrayArrayOfInteger = arrayArrayOfInteger
+        
         self.arrayArrayOfModel = arrayArrayOfModel
+        
         self.arrayOfString = arrayOfString
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case arrayArrayOfInteger = "array_array_of_integer"
+        
         case arrayArrayOfModel = "array_array_of_model"
+        
         case arrayOfString = "array_of_string"
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         arrayArrayOfInteger = try container.decodeArrayIfPresent(.arrayArrayOfInteger)
+        
         arrayArrayOfModel = try container.decodeArrayIfPresent(.arrayArrayOfModel)
+        
         arrayOfString = try container.decodeArrayIfPresent(.arrayOfString)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(arrayArrayOfInteger, forKey: .arrayArrayOfInteger)
+        
         try container.encodeIfPresent(arrayArrayOfModel, forKey: .arrayArrayOfModel)
+        
         try container.encodeIfPresent(arrayOfString, forKey: .arrayOfString)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? ArrayTest else { return false }
+      
+      
+      
       guard self.arrayArrayOfInteger == object.arrayArrayOfInteger else { return false }
+      
+      
+      
       guard self.arrayArrayOfModel == object.arrayArrayOfModel else { return false }
+      
+      
+      
       guard self.arrayOfString == object.arrayOfString else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: ArrayTest, rhs: ArrayTest) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

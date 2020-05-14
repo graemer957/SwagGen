@@ -3,40 +3,73 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
 extension Petstore.Pets {
 
+    
     public enum CreatePets {
 
         public static let service = APIService<Response>(id: "createPets", tag: "pets", method: "POST", path: "/pets", hasBody: false, authorization: Authorization(type: "petstore_auth", scope: "write:pets"))
+        
 
         public final class Request: APIRequest<Response> {
+            
+            
+            
 
             public init() {
+                
+                
                 super.init(service: CreatePets.service)
             }
+            
+            
+            
         }
 
         public enum Response: APIResponseValue, CustomStringConvertible, CustomDebugStringConvertible {
+            
+            
             public typealias SuccessType = Void
+            
+            
 
             /** Null response */
+            
+            
             case status201
+            
+            
+            
 
             /** unexpected error */
+            
+            
             case defaultResponse(statusCode: Int, ErrorType)
+            
+            
 
             public var success: Void? {
                 switch self {
+                
+                
                 case .status201: return ()
+                
+                
+                
                 default: return nil
+                
                 }
             }
+            
 
             public var failure: ErrorType? {
                 switch self {
+                
                 case .defaultResponse(_, let response): return response
+                
                 default: return nil
                 }
             }
@@ -51,33 +84,58 @@ extension Petstore.Pets {
                     fatalError("Response does not have success or failure response")
                 }
             }
+            
 
             public var response: Any {
                 switch self {
+                
                 case .defaultResponse(_, let response): return response
+                
+                
                 default: return ()
+                
                 }
             }
 
             public var statusCode: Int {
                 switch self {
+                
+                
                 case .status201: return 201
+                
+                
+                
                 case .defaultResponse(let statusCode, _): return statusCode
+                
+                
                 }
             }
 
             public var successful: Bool {
                 switch self {
+                
                 case .status201: return true
+                
                 case .defaultResponse: return false
+                
                 }
             }
 
             public init(statusCode: Int, data: Data) throws {
+                
                 let decoder = JSONDecoder()
+                
                 switch statusCode {
+                
+                
                 case 201: self = .status201
+                
+                
+                
+                
                 default: self = try .defaultResponse(statusCode: statusCode, decoder.decode(ErrorType.self, from: data))
+                
+                
                 }
             }
 

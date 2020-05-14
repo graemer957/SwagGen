@@ -3,46 +3,97 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class Interval: Codable, Equatable {
+    
+    
 
+    
     public var stopId: String?
+    
 
+    
     public var timeToArrival: Double?
+    
+    
+    
 
     public init(stopId: String? = nil, timeToArrival: Double? = nil) {
+        
         self.stopId = stopId
+        
         self.timeToArrival = timeToArrival
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case stopId
+        
         case timeToArrival
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         stopId = try container.decodeIfPresent(.stopId)
+        
         timeToArrival = try container.decodeIfPresent(.timeToArrival)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(stopId, forKey: .stopId)
+        
         try container.encodeIfPresent(timeToArrival, forKey: .timeToArrival)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? Interval else { return false }
+      
+      
+      
       guard self.stopId == object.stopId else { return false }
+      
+      
+      
       guard self.timeToArrival == object.timeToArrival else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: Interval, rhs: Interval) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

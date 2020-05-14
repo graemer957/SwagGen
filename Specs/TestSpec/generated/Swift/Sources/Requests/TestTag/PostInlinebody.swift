@@ -3,105 +3,201 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
 extension TestSpec.TestTag {
 
+    
     /** operation with an inline body */
+    
     public enum PostInlinebody {
 
         public static let service = APIService<Response>(id: "postInlinebody", tag: "TestTag", method: "POST", path: "/inlinebody", hasBody: true)
+        
 
         public final class Request: APIRequest<Response> {
+            
 
-            /** operation with an inline body */
-            public class Item: Codable, Equatable {
+            
+/** operation with an inline body */
 
-                public var id: Int?
 
-                public var name: String?
+public class Item: Codable, Equatable {
+    
+    
 
-                public init(id: Int? = nil, name: String? = nil) {
-                    self.id = id
-                    self.name = name
-                }
+    
+    public var id: Int?
+    
 
-                private enum CodingKeys: String, CodingKey {
-                    case id
-                    case name
-                }
+    
+    public var name: String?
+    
+    
+    
 
-                public required init(from decoder: Decoder) throws {
-                    let container = try decoder.container(keyedBy: CodingKeys.self)
+    public init(id: Int? = nil, name: String? = nil) {
+        
+        self.id = id
+        
+        self.name = name
+        
+        
+    }
 
-                    id = try container.decodeIfPresent(.id)
-                    name = try container.decodeIfPresent(.name)
-                }
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case id
+        
+        case name
+        
+    }
+    
 
-                public func encode(to encoder: Encoder) throws {
-                    var container = encoder.container(keyedBy: CodingKeys.self)
+    public required init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
 
-                    try container.encodeIfPresent(id, forKey: .id)
-                    try container.encodeIfPresent(name, forKey: .name)
-                }
+        
+        id = try container.decodeIfPresent(.id)
+        
+        name = try container.decodeIfPresent(.name)
+        
+        
+        
+        
+    }
 
-                public func isEqual(to object: Any?) -> Bool {
-                  guard let object = object as? Item else { return false }
-                  guard self.id == object.id else { return false }
-                  guard self.name == object.name else { return false }
-                  return true
-                }
+    public func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
 
-                public static func == (lhs: Item, rhs: Item) -> Bool {
-                    return lhs.isEqual(to: rhs)
-                }
-            }
+        
+        try container.encodeIfPresent(id, forKey: .id)
+        
+        try container.encodeIfPresent(name, forKey: .name)
+        
+        
+        
+        
+    }
+    
+
+    public func isEqual(to object: Any?) -> Bool {
+      
+      guard let object = object as? Item else { return false }
+      
+      
+      
+      guard self.id == object.id else { return false }
+      
+      
+      
+      guard self.name == object.name else { return false }
+      
+      
+      
+      
+      return true
+      
+    }
+    
+
+    public static func == (lhs: Item, rhs: Item) -> Bool {
+        return lhs.isEqual(to: rhs)
+    }
+    
+}
+
+
+            
+            
+            
 
             public var item: Item
+            
 
             public init(item: Item) {
+                
                 self.item = item
+                
+                
                 super.init(service: PostInlinebody.service) {
                     let jsonEncoder = JSONEncoder()
                     return try jsonEncoder.encode(item)
                 }
             }
+            
+            
+            
         }
 
         public enum Response: APIResponseValue, CustomStringConvertible, CustomDebugStringConvertible {
+            
+            
             public typealias SuccessType = Void
+            
+            
 
             /** Empty response */
+            
+            
             case status201
+            
+            
 
             public var success: Void? {
                 switch self {
+                
+                
                 case .status201: return ()
+                
+                
+                
                 }
             }
+            
 
             public var response: Any {
                 switch self {
+                
+                
                 default: return ()
+                
                 }
             }
 
             public var statusCode: Int {
                 switch self {
+                
+                
                 case .status201: return 201
+                
+                
                 }
             }
 
             public var successful: Bool {
                 switch self {
+                
                 case .status201: return true
+                
                 }
             }
 
             public init(statusCode: Int, data: Data) throws {
+                
                 switch statusCode {
+                
+                
                 case 201: self = .status201
+                
+                
+                
                 default: throw APIError.unexpectedStatusCode(statusCode: statusCode, data: data)
+                
                 }
             }
 

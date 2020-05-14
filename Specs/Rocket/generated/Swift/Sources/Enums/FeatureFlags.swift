@@ -3,6 +3,8 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
+
 /** The set of opt in feature flags which cause breaking changes to responses.
 
 While Rocket APIs look to avoid breaking changes under the active major version, the formats of responses
@@ -19,14 +21,24 @@ clients as these formats evolve under the current major version.
 
 See the `feature-flags.md` for available flag details.
  */
+
 public enum FeatureFlags: String, Codable {
+    
     case all = "all"
+    
     case idp = "idp"
+    
     case ldp = "ldp"
+    
 
     public static let cases: [FeatureFlags] = [
+      
       .all,
+      
       .idp,
+      
       .ldp,
+      
     ]
 }
+

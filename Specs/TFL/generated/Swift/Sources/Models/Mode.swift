@@ -3,60 +3,129 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class Mode: Codable, Equatable {
+    
+    
 
+    
     public var isFarePaying: Bool?
+    
 
+    
     public var isScheduledService: Bool?
+    
 
+    
     public var isTflService: Bool?
+    
 
+    
     public var modeName: String?
+    
+    
+    
 
     public init(isFarePaying: Bool? = nil, isScheduledService: Bool? = nil, isTflService: Bool? = nil, modeName: String? = nil) {
+        
         self.isFarePaying = isFarePaying
+        
         self.isScheduledService = isScheduledService
+        
         self.isTflService = isTflService
+        
         self.modeName = modeName
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case isFarePaying
+        
         case isScheduledService
+        
         case isTflService
+        
         case modeName
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         isFarePaying = try container.decodeIfPresent(.isFarePaying)
+        
         isScheduledService = try container.decodeIfPresent(.isScheduledService)
+        
         isTflService = try container.decodeIfPresent(.isTflService)
+        
         modeName = try container.decodeIfPresent(.modeName)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(isFarePaying, forKey: .isFarePaying)
+        
         try container.encodeIfPresent(isScheduledService, forKey: .isScheduledService)
+        
         try container.encodeIfPresent(isTflService, forKey: .isTflService)
+        
         try container.encodeIfPresent(modeName, forKey: .modeName)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? Mode else { return false }
+      
+      
+      
       guard self.isFarePaying == object.isFarePaying else { return false }
+      
+      
+      
       guard self.isScheduledService == object.isScheduledService else { return false }
+      
+      
+      
       guard self.isTflService == object.isTflService else { return false }
+      
+      
+      
       guard self.modeName == object.modeName else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: Mode, rhs: Mode) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

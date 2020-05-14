@@ -3,6 +3,7 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 public struct APIService<ResponseType: APIResponseValue> {
 
     public let id: String

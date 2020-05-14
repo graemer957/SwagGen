@@ -3,15 +3,27 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
+
 /** The video delivery type you require. */
+
 public enum MediaFileDelivery: String, Codable {
+    
     case stream = "stream"
+    
     case progressive = "progressive"
+    
     case download = "download"
+    
 
     public static let cases: [MediaFileDelivery] = [
+      
       .stream,
+      
       .progressive,
+      
       .download,
+      
     ]
 }
+

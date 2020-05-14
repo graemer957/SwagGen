@@ -3,64 +3,137 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class ErrorObject: Codable, Equatable {
+    
+    
 
+    
     /** CloudPass error code */
+    
     public var errorCode: String
+    
 
+    
     /** CloudPass error description */
+    
     public var message: String
+    
 
+    
     /** This is completed if the IDP returns an error */
+    
     public var externalCode: String?
+    
 
+    
     /** This is completed if the IDP returns an error */
+    
     public var externalMessage: String?
+    
+    
+    
 
     public init(errorCode: String, message: String, externalCode: String? = nil, externalMessage: String? = nil) {
+        
         self.errorCode = errorCode
+        
         self.message = message
+        
         self.externalCode = externalCode
+        
         self.externalMessage = externalMessage
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case errorCode
+        
         case message
+        
         case externalCode
+        
         case externalMessage
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         errorCode = try container.decode(.errorCode)
+        
         message = try container.decode(.message)
+        
         externalCode = try container.decodeIfPresent(.externalCode)
+        
         externalMessage = try container.decodeIfPresent(.externalMessage)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encode(errorCode, forKey: .errorCode)
+        
         try container.encode(message, forKey: .message)
+        
         try container.encodeIfPresent(externalCode, forKey: .externalCode)
+        
         try container.encodeIfPresent(externalMessage, forKey: .externalMessage)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? ErrorObject else { return false }
+      
+      
+      
       guard self.errorCode == object.errorCode else { return false }
+      
+      
+      
       guard self.message == object.message else { return false }
+      
+      
+      
       guard self.externalCode == object.externalCode else { return false }
+      
+      
+      
       guard self.externalMessage == object.externalMessage else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: ErrorObject, rhs: ErrorObject) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

@@ -3,7 +3,13 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
 /** definition with only additional properties */
+
+
 public typealias ModelWithOnlyAdditionalProperties = [String: Any]
+
+

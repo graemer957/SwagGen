@@ -3,40 +3,83 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
-public class AppConfigSubscription: Codable, Equatable {
 
+
+public class AppConfigSubscription: Codable, Equatable {
+    
+    
+
+    
     /** The available public plans a user can subscribe to. */
+    
     public var plans: [Plan]?
+    
+    
+    
 
     public init(plans: [Plan]? = nil) {
+        
         self.plans = plans
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case plans
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         plans = try container.decodeArrayIfPresent(.plans)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(plans, forKey: .plans)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? AppConfigSubscription else { return false }
+      
+      
+      
       guard self.plans == object.plans else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: AppConfigSubscription, rhs: AppConfigSubscription) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

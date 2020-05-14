@@ -3,7 +3,9 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
+
 
 public struct TFL {
 
@@ -13,21 +15,40 @@ public struct TFL {
      /// Whether to remove invalid elements instead of throwing when decoding arrays
     public static var safeArrayDecoding = false
 
+    
     public static let version = "v1"
+    
+    
 
+    
     public enum AccidentStats {}
+    
     public enum AirQuality {}
+    
     public enum BikePoint {}
+    
     public enum Cabwise {}
+    
     public enum Journey {}
+    
     public enum Line {}
+    
     public enum Mode {}
+    
     public enum Occupancy {}
+    
     public enum Place {}
+    
     public enum Road {}
+    
     public enum Search {}
+    
     public enum StopPoint {}
+    
     public enum TravelTime {}
+    
     public enum Vehicle {}
+    
 
+    
 }

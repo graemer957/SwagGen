@@ -3,39 +3,81 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
-public class ArrayOfArrayOfNumberOnly: Codable, Equatable {
 
+
+public class ArrayOfArrayOfNumberOnly: Codable, Equatable {
+    
+    
+
+    
     public var arrayArrayNumber: [[Double]]?
+    
+    
+    
 
     public init(arrayArrayNumber: [[Double]]? = nil) {
+        
         self.arrayArrayNumber = arrayArrayNumber
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case arrayArrayNumber = "ArrayArrayNumber"
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         arrayArrayNumber = try container.decodeArrayIfPresent(.arrayArrayNumber)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(arrayArrayNumber, forKey: .arrayArrayNumber)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? ArrayOfArrayOfNumberOnly else { return false }
+      
+      
+      
       guard self.arrayArrayNumber == object.arrayArrayNumber else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: ArrayOfArrayOfNumberOnly, rhs: ArrayOfArrayOfNumberOnly) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

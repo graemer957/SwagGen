@@ -3,40 +3,83 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
-/** Model for testing model with "_class" property */
-public class ClassModel: Codable, Equatable {
 
+/** Model for testing model with "_class" property */
+
+
+public class ClassModel: Codable, Equatable {
+    
+    
+
+    
     public var `class`: String?
+    
+    
+    
 
     public init(`class`: String? = nil) {
+        
         self.`class` = `class`
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case `class` = "_class"
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         `class` = try container.decodeIfPresent(.`class`)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(`class`, forKey: .`class`)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? ClassModel else { return false }
+      
+      
+      
       guard self.`class` == object.`class` else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: ClassModel, rhs: ClassModel) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

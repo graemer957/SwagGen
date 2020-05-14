@@ -3,46 +3,97 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class ReadOnlyFirst: Codable, Equatable {
+    
+    
 
+    
     public var bar: String?
+    
 
+    
     public var baz: String?
+    
+    
+    
 
     public init(bar: String? = nil, baz: String? = nil) {
+        
         self.bar = bar
+        
         self.baz = baz
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case bar
+        
         case baz
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         bar = try container.decodeIfPresent(.bar)
+        
         baz = try container.decodeIfPresent(.baz)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(bar, forKey: .bar)
+        
         try container.encodeIfPresent(baz, forKey: .baz)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? ReadOnlyFirst else { return false }
+      
+      
+      
       guard self.bar == object.bar else { return false }
+      
+      
+      
       guard self.baz == object.baz else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: ReadOnlyFirst, rhs: ReadOnlyFirst) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

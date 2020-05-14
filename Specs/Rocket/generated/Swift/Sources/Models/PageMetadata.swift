@@ -3,47 +3,99 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
 /** Metadata associated with a page. Primarily intended for SEO usage. */
+
+
 public class PageMetadata: Codable, Equatable {
+    
+    
 
+    
     public var description: String?
+    
 
+    
     public var keywords: [String]?
+    
+    
+    
 
     public init(description: String? = nil, keywords: [String]? = nil) {
+        
         self.description = description
+        
         self.keywords = keywords
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case description
+        
         case keywords
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         description = try container.decodeIfPresent(.description)
+        
         keywords = try container.decodeArrayIfPresent(.keywords)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(description, forKey: .description)
+        
         try container.encodeIfPresent(keywords, forKey: .keywords)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? PageMetadata else { return false }
+      
+      
+      
       guard self.description == object.description else { return false }
+      
+      
+      
       guard self.keywords == object.keywords else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: PageMetadata, rhs: PageMetadata) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

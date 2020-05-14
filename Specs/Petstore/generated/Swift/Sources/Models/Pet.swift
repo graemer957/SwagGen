@@ -3,53 +3,113 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class Pet: Codable, Equatable {
+    
+    
 
+    
     public var id: Int
+    
 
+    
     public var name: String
+    
 
+    
     public var tag: String?
+    
+    
+    
 
     public init(id: Int, name: String, tag: String? = nil) {
+        
         self.id = id
+        
         self.name = name
+        
         self.tag = tag
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case id
+        
         case name
+        
         case tag
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         id = try container.decode(.id)
+        
         name = try container.decode(.name)
+        
         tag = try container.decodeIfPresent(.tag)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encode(id, forKey: .id)
+        
         try container.encode(name, forKey: .name)
+        
         try container.encodeIfPresent(tag, forKey: .tag)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? Pet else { return false }
+      
+      
+      
       guard self.id == object.id else { return false }
+      
+      
+      
       guard self.name == object.name else { return false }
+      
+      
+      
       guard self.tag == object.tag else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: Pet, rhs: Pet) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

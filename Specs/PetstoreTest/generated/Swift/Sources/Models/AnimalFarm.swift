@@ -3,6 +3,11 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public typealias AnimalFarm = [Animal]
+
+

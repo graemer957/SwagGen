@@ -3,61 +3,131 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
 /** Model for testing model name same as property name */
+
+
 public class Name: Codable, Equatable {
+    
+    
 
+    
     public var name: Int
+    
 
+    
     public var _123Number: Int?
+    
 
+    
     public var property: String?
+    
 
+    
     public var snakeCase: Int?
+    
+    
+    
 
     public init(name: Int, _123Number: Int? = nil, property: String? = nil, snakeCase: Int? = nil) {
+        
         self.name = name
+        
         self._123Number = _123Number
+        
         self.property = property
+        
         self.snakeCase = snakeCase
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case name
+        
         case _123Number = "123Number"
+        
         case property
+        
         case snakeCase = "snake_case"
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         name = try container.decode(.name)
+        
         _123Number = try container.decodeIfPresent(._123Number)
+        
         property = try container.decodeIfPresent(.property)
+        
         snakeCase = try container.decodeIfPresent(.snakeCase)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encode(name, forKey: .name)
+        
         try container.encodeIfPresent(_123Number, forKey: ._123Number)
+        
         try container.encodeIfPresent(property, forKey: .property)
+        
         try container.encodeIfPresent(snakeCase, forKey: .snakeCase)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? Name else { return false }
+      
+      
+      
       guard self.name == object.name else { return false }
+      
+      
+      
       guard self._123Number == object._123Number else { return false }
+      
+      
+      
       guard self.property == object.property else { return false }
+      
+      
+      
       guard self.snakeCase == object.snakeCase else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: Name, rhs: Name) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

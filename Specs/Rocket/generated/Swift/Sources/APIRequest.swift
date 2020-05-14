@@ -3,6 +3,7 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
 public class APIRequest<ResponseType: APIResponseValue> {

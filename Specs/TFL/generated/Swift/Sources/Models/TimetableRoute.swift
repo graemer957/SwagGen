@@ -3,46 +3,97 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class TimetableRoute: Codable, Equatable {
+    
+    
 
+    
     public var schedules: [Schedule]?
+    
 
+    
     public var stationIntervals: [StationInterval]?
+    
+    
+    
 
     public init(schedules: [Schedule]? = nil, stationIntervals: [StationInterval]? = nil) {
+        
         self.schedules = schedules
+        
         self.stationIntervals = stationIntervals
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case schedules
+        
         case stationIntervals
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         schedules = try container.decodeArrayIfPresent(.schedules)
+        
         stationIntervals = try container.decodeArrayIfPresent(.stationIntervals)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(schedules, forKey: .schedules)
+        
         try container.encodeIfPresent(stationIntervals, forKey: .stationIntervals)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? TimetableRoute else { return false }
+      
+      
+      
       guard self.schedules == object.schedules else { return false }
+      
+      
+      
       guard self.stationIntervals == object.stationIntervals else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: TimetableRoute, rhs: TimetableRoute) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

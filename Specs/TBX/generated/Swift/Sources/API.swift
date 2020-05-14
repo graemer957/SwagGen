@@ -3,7 +3,9 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
+
 
 public struct TBX {
 
@@ -13,11 +15,20 @@ public struct TBX {
      /// Whether to remove invalid elements instead of throwing when decoding arrays
     public static var safeArrayDecoding = false
 
+    
     public static let version = "2.4.1"
+    
+    
 
+    
     public enum AuthorizationService {}
+    
     public enum DeviceService {}
+    
     public enum UserService {}
+    
     public enum Auth {}
+    
 
+    
 }

@@ -3,6 +3,7 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Result
 
 public typealias APIResult<T> = Result<T, APIError>

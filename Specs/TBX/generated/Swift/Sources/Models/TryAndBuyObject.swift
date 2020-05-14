@@ -3,77 +3,167 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class TryAndBuyObject: Codable, Equatable {
+    
+    
 
+    
     public var active: Bool
+    
 
+    
     public var createdAt: DateTime
+    
 
+    
     public var expiration: DateTime
+    
 
+    
     /** Number of days that the user was with tryandbuy */
+    
     public var daysWithTryAndBuy: Double
+    
 
+    
     /** Number of the try and buy that the user had */
+    
     public var numTryAndBuyExpired: Double
+    
 
+    
     /** Date when the last TryAndBuy finished */
+    
     public var lastFinishedTryAndBuy: DateTime?
+    
+    
+    
 
     public init(active: Bool, createdAt: DateTime, expiration: DateTime, daysWithTryAndBuy: Double, numTryAndBuyExpired: Double, lastFinishedTryAndBuy: DateTime? = nil) {
+        
         self.active = active
+        
         self.createdAt = createdAt
+        
         self.expiration = expiration
+        
         self.daysWithTryAndBuy = daysWithTryAndBuy
+        
         self.numTryAndBuyExpired = numTryAndBuyExpired
+        
         self.lastFinishedTryAndBuy = lastFinishedTryAndBuy
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case active
+        
         case createdAt
+        
         case expiration
+        
         case daysWithTryAndBuy
+        
         case numTryAndBuyExpired
+        
         case lastFinishedTryAndBuy
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         active = try container.decode(.active)
+        
         createdAt = try container.decode(.createdAt)
+        
         expiration = try container.decode(.expiration)
+        
         daysWithTryAndBuy = try container.decode(.daysWithTryAndBuy)
+        
         numTryAndBuyExpired = try container.decode(.numTryAndBuyExpired)
+        
         lastFinishedTryAndBuy = try container.decodeIfPresent(.lastFinishedTryAndBuy)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encode(active, forKey: .active)
+        
         try container.encode(createdAt, forKey: .createdAt)
+        
         try container.encode(expiration, forKey: .expiration)
+        
         try container.encode(daysWithTryAndBuy, forKey: .daysWithTryAndBuy)
+        
         try container.encode(numTryAndBuyExpired, forKey: .numTryAndBuyExpired)
+        
         try container.encodeIfPresent(lastFinishedTryAndBuy, forKey: .lastFinishedTryAndBuy)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? TryAndBuyObject else { return false }
+      
+      
+      
       guard self.active == object.active else { return false }
+      
+      
+      
       guard self.createdAt == object.createdAt else { return false }
+      
+      
+      
       guard self.expiration == object.expiration else { return false }
+      
+      
+      
       guard self.daysWithTryAndBuy == object.daysWithTryAndBuy else { return false }
+      
+      
+      
       guard self.numTryAndBuyExpired == object.numTryAndBuyExpired else { return false }
+      
+      
+      
       guard self.lastFinishedTryAndBuy == object.lastFinishedTryAndBuy else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: TryAndBuyObject, rhs: TryAndBuyObject) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

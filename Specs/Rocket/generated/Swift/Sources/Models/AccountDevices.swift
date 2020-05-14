@@ -3,20 +3,32 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class AccountDevices: Codable, Equatable {
+    
+    
 
+    
     /** The array of registered playack devices. */
+    
     public var devices: [Device]
+    
 
+    
     /** The maximum number of playback devices that can be registered
 under an account at a single time.
 
 If there is no maximum defined this value will be `-1`.
  */
+    
     public var maxRegistered: Int
+    
 
+    
     /** Defines the start and end date of the current deregistration window along with calculated limits.
 
 If undefined then there are no deregistration limits for a period.
@@ -28,8 +40,11 @@ In this window there is a limit on how many devices can be deregistered in 30 da
 If exceeded then no more devices can be deregistered unless the oldest deregistration drops
 off the 30 day window.
  */
+    
     public var deregistrationWindow: DeviceRegistrationWindow?
+    
 
+    
     /** Defines the start and end date of the current registration window along with calculated limits.
 
 If undefined then there are no registration limits for a period.
@@ -45,50 +60,108 @@ Deregistration also has potential limits which may prevent a device being deregi
 In this case the user must wait until the oldest deregistered device is more than 30
 days old.
  */
+    
     public var registrationWindow: DeviceRegistrationWindow?
+    
+    
+    
 
     public init(devices: [Device], maxRegistered: Int, deregistrationWindow: DeviceRegistrationWindow? = nil, registrationWindow: DeviceRegistrationWindow? = nil) {
+        
         self.devices = devices
+        
         self.maxRegistered = maxRegistered
+        
         self.deregistrationWindow = deregistrationWindow
+        
         self.registrationWindow = registrationWindow
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case devices
+        
         case maxRegistered
+        
         case deregistrationWindow
+        
         case registrationWindow
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         devices = try container.decodeArray(.devices)
+        
         maxRegistered = try container.decode(.maxRegistered)
+        
         deregistrationWindow = try container.decodeIfPresent(.deregistrationWindow)
+        
         registrationWindow = try container.decodeIfPresent(.registrationWindow)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encode(devices, forKey: .devices)
+        
         try container.encode(maxRegistered, forKey: .maxRegistered)
+        
         try container.encodeIfPresent(deregistrationWindow, forKey: .deregistrationWindow)
+        
         try container.encodeIfPresent(registrationWindow, forKey: .registrationWindow)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? AccountDevices else { return false }
+      
+      
+      
       guard self.devices == object.devices else { return false }
+      
+      
+      
       guard self.maxRegistered == object.maxRegistered else { return false }
+      
+      
+      
       guard self.deregistrationWindow == object.deregistrationWindow else { return false }
+      
+      
+      
       guard self.registrationWindow == object.registrationWindow else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: AccountDevices, rhs: AccountDevices) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

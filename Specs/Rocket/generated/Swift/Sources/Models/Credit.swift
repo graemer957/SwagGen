@@ -3,84 +3,177 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class Credit: Person {
+    
+    
 
+    
+/** The type of role the credit performed, e.g. actor. */
+
+public enum Role: String, Codable {
+    
+    case actor = "actor"
+    
+    case associateproducer = "associateproducer"
+    
+    case coactor = "coactor"
+    
+    case director = "director"
+    
+    case executiveproducer = "executiveproducer"
+    
+    case filminglocation = "filminglocation"
+    
+    case guest = "guest"
+    
+    case narrator = "narrator"
+    
+    case other = "other"
+    
+    case presenter = "presenter"
+    
+    case producer = "producer"
+    
+    case productmanager = "productmanager"
+    
+    case thememusicby = "thememusicby"
+    
+    case voice = "voice"
+    
+    case writer = "writer"
+    
+
+    public static let cases: [Role] = [
+      
+      .actor,
+      
+      .associateproducer,
+      
+      .coactor,
+      
+      .director,
+      
+      .executiveproducer,
+      
+      .filminglocation,
+      
+      .guest,
+      
+      .narrator,
+      
+      .other,
+      
+      .presenter,
+      
+      .producer,
+      
+      .productmanager,
+      
+      .thememusicby,
+      
+      .voice,
+      
+      .writer,
+      
+    ]
+}
+
+    
+    
+    
+
+    
     /** The type of role the credit performed, e.g. actor. */
-    public enum Role: String, Codable {
-        case actor = "actor"
-        case associateproducer = "associateproducer"
-        case coactor = "coactor"
-        case director = "director"
-        case executiveproducer = "executiveproducer"
-        case filminglocation = "filminglocation"
-        case guest = "guest"
-        case narrator = "narrator"
-        case other = "other"
-        case presenter = "presenter"
-        case producer = "producer"
-        case productmanager = "productmanager"
-        case thememusicby = "thememusicby"
-        case voice = "voice"
-        case writer = "writer"
-
-        public static let cases: [Role] = [
-          .actor,
-          .associateproducer,
-          .coactor,
-          .director,
-          .executiveproducer,
-          .filminglocation,
-          .guest,
-          .narrator,
-          .other,
-          .presenter,
-          .producer,
-          .productmanager,
-          .thememusicby,
-          .voice,
-          .writer,
-        ]
-    }
-
-    /** The type of role the credit performed, e.g. actor. */
+    
     public var role: Role
+    
 
+    
     /** The name of the character. */
+    
     public var character: String?
+    
+    
+    
 
     public init(name: String, path: String, role: Role, character: String? = nil) {
+        
         self.role = role
+        
         self.character = character
+        
+        
         super.init(name: name, path: path)
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case role
+        
         case character
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         role = try container.decode(.role)
+        
         character = try container.decodeIfPresent(.character)
+        
+        
+        
+        
         try super.init(from: decoder)
+        
     }
 
     public override func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encode(role, forKey: .role)
+        
         try container.encodeIfPresent(character, forKey: .character)
+        
+        
+        
+        
         try super.encode(to: encoder)
+        
     }
+    
 
     override public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? Credit else { return false }
+      
+      
+      
       guard self.role == object.role else { return false }
+      
+      
+      
       guard self.character == object.character else { return false }
+      
+      
+      
+      
       return super.isEqual(to: object)
+      
     }
+    
 }
+
+

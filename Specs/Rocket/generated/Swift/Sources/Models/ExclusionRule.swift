@@ -3,110 +3,235 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
 /** Defines playback exclusion rules for an Offer or Entitlement. */
+
+
 public class ExclusionRule: Codable, Equatable {
+    
+    
 
-    /** Defines playback exclusion rules for an Offer or Entitlement. */
-    public enum ExcludeDelivery: String, Codable {
-        case stream = "Stream"
-        case download = "Download"
-        case streamOrDownload = "StreamOrDownload"
-        case progressiveDownload = "ProgressiveDownload"
-        case none = "None"
+    
+/** Defines playback exclusion rules for an Offer or Entitlement. */
 
-        public static let cases: [ExcludeDelivery] = [
-          .stream,
-          .download,
-          .streamOrDownload,
-          .progressiveDownload,
-          .none,
-        ]
-    }
+public enum ExcludeDelivery: String, Codable {
+    
+    case stream = "Stream"
+    
+    case download = "Download"
+    
+    case streamOrDownload = "StreamOrDownload"
+    
+    case progressiveDownload = "ProgressiveDownload"
+    
+    case none = "None"
+    
 
-    /** Defines playback exclusion rules for an Offer or Entitlement. */
-    public enum ExcludeMinResolution: String, Codable {
-        case sd = "SD"
-        case hd720 = "HD-720"
-        case hd1080 = "HD-1080"
-        case unknown = "Unknown"
+    public static let cases: [ExcludeDelivery] = [
+      
+      .stream,
+      
+      .download,
+      
+      .streamOrDownload,
+      
+      .progressiveDownload,
+      
+      .none,
+      
+    ]
+}
 
-        public static let cases: [ExcludeMinResolution] = [
-          .sd,
-          .hd720,
-          .hd1080,
-          .unknown,
-        ]
-    }
+    
+    
+    
 
+    
+/** Defines playback exclusion rules for an Offer or Entitlement. */
+
+public enum ExcludeMinResolution: String, Codable {
+    
+    case sd = "SD"
+    
+    case hd720 = "HD-720"
+    
+    case hd1080 = "HD-1080"
+    
+    case unknown = "Unknown"
+    
+
+    public static let cases: [ExcludeMinResolution] = [
+      
+      .sd,
+      
+      .hd720,
+      
+      .hd1080,
+      
+      .unknown,
+      
+    ]
+}
+
+    
+    
+    
+
+    
     public var description: String?
+    
 
+    
     /** The device type that the exclusion rules apply to. */
+    
     public var device: String?
+    
 
+    
     /** Prevent airplay from an apple device. */
+    
     public var excludeAirplay: Bool?
+    
 
+    
     /** Prevent chromecasting. */
+    
     public var excludeChromecast: Bool?
+    
 
+    
     public var excludeDelivery: ExcludeDelivery?
+    
 
+    
     public var excludeMinResolution: ExcludeMinResolution?
+    
+    
+    
 
     public init(description: String? = nil, device: String? = nil, excludeAirplay: Bool? = nil, excludeChromecast: Bool? = nil, excludeDelivery: ExcludeDelivery? = nil, excludeMinResolution: ExcludeMinResolution? = nil) {
+        
         self.description = description
+        
         self.device = device
+        
         self.excludeAirplay = excludeAirplay
+        
         self.excludeChromecast = excludeChromecast
+        
         self.excludeDelivery = excludeDelivery
+        
         self.excludeMinResolution = excludeMinResolution
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case description
+        
         case device
+        
         case excludeAirplay
+        
         case excludeChromecast
+        
         case excludeDelivery
+        
         case excludeMinResolution
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         description = try container.decodeIfPresent(.description)
+        
         device = try container.decodeIfPresent(.device)
+        
         excludeAirplay = try container.decodeIfPresent(.excludeAirplay)
+        
         excludeChromecast = try container.decodeIfPresent(.excludeChromecast)
+        
         excludeDelivery = try container.decodeIfPresent(.excludeDelivery)
+        
         excludeMinResolution = try container.decodeIfPresent(.excludeMinResolution)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encodeIfPresent(description, forKey: .description)
+        
         try container.encodeIfPresent(device, forKey: .device)
+        
         try container.encodeIfPresent(excludeAirplay, forKey: .excludeAirplay)
+        
         try container.encodeIfPresent(excludeChromecast, forKey: .excludeChromecast)
+        
         try container.encodeIfPresent(excludeDelivery, forKey: .excludeDelivery)
+        
         try container.encodeIfPresent(excludeMinResolution, forKey: .excludeMinResolution)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? ExclusionRule else { return false }
+      
+      
+      
       guard self.description == object.description else { return false }
+      
+      
+      
       guard self.device == object.device else { return false }
+      
+      
+      
       guard self.excludeAirplay == object.excludeAirplay else { return false }
+      
+      
+      
       guard self.excludeChromecast == object.excludeChromecast else { return false }
+      
+      
+      
       guard self.excludeDelivery == object.excludeDelivery else { return false }
+      
+      
+      
       guard self.excludeMinResolution == object.excludeMinResolution else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: ExclusionRule, rhs: ExclusionRule) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

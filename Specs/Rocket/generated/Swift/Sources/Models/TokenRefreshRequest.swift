@@ -3,32 +3,53 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
+
+
 public class TokenRefreshRequest: Codable, Equatable {
+    
+    
 
-    /** If you specify a cookie type then a content filter cookie will be returned
-    along with the token(s). This is only really intended for web based clients which
-    need to pass the cookies to a server to render a page based on the users
-    content filters, e.g subscription code.
+    
+/** If you specify a cookie type then a content filter cookie will be returned
+along with the token(s). This is only really intended for web based clients which
+need to pass the cookies to a server to render a page based on the users
+content filters, e.g subscription code.
 
-    If type `Session` the cookie will be session based.
-    If type `Persistent` the cookie will have a medium term lifespan.
-    If undefined no cookies will be set.
-     */
-    public enum CookieType: String, Codable {
-        case session = "Session"
-        case persistent = "Persistent"
+If type `Session` the cookie will be session based.
+If type `Persistent` the cookie will have a medium term lifespan.
+If undefined no cookies will be set.
+ */
 
-        public static let cases: [CookieType] = [
-          .session,
-          .persistent,
-        ]
-    }
+public enum CookieType: String, Codable {
+    
+    case session = "Session"
+    
+    case persistent = "Persistent"
+    
 
+    public static let cases: [CookieType] = [
+      
+      .session,
+      
+      .persistent,
+      
+    ]
+}
+
+    
+    
+    
+
+    
     /** The token to refresh. */
+    
     public var token: String
+    
 
+    
     /** If you specify a cookie type then a content filter cookie will be returned
 along with the token(s). This is only really intended for web based clients which
 need to pass the cookies to a server to render a page based on the users
@@ -38,40 +59,84 @@ If type `Session` the cookie will be session based.
 If type `Persistent` the cookie will have a medium term lifespan.
 If undefined no cookies will be set.
  */
+    
     public var cookieType: CookieType?
+    
+    
+    
 
     public init(token: String, cookieType: CookieType? = nil) {
+        
         self.token = token
+        
         self.cookieType = cookieType
+        
+        
     }
 
+    
     private enum CodingKeys: String, CodingKey {
+        
         case token
+        
         case cookieType
+        
     }
+    
 
     public required init(from decoder: Decoder) throws {
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        
         token = try container.decode(.token)
+        
         cookieType = try container.decodeIfPresent(.cookieType)
+        
+        
+        
+        
     }
 
     public func encode(to encoder: Encoder) throws {
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
 
+        
         try container.encode(token, forKey: .token)
+        
         try container.encodeIfPresent(cookieType, forKey: .cookieType)
+        
+        
+        
+        
     }
+    
 
     public func isEqual(to object: Any?) -> Bool {
+      
       guard let object = object as? TokenRefreshRequest else { return false }
+      
+      
+      
       guard self.token == object.token else { return false }
+      
+      
+      
       guard self.cookieType == object.cookieType else { return false }
+      
+      
+      
+      
       return true
+      
     }
+    
 
     public static func == (lhs: TokenRefreshRequest, rhs: TokenRefreshRequest) -> Bool {
         return lhs.isEqual(to: rhs)
     }
+    
 }
+
+

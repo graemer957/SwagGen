@@ -3,7 +3,9 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
+
 
 public struct TestSpec {
 
@@ -13,8 +15,14 @@ public struct TestSpec {
      /// Whether to remove invalid elements instead of throwing when decoding arrays
     public static var safeArrayDecoding = false
 
+    
     public static let version = "1.0"
+    
+    
 
+    
     public enum TestTag {}
+    
 
+    
 }

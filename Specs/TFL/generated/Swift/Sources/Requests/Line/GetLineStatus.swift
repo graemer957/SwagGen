@@ -3,111 +3,198 @@
 // https://github.com/yonaskolb/SwagGen
 //
 
+
 import Foundation
 
 extension TFL.Line {
 
+    
     public enum GetLineStatus {
 
         public static let service = APIService<Response>(id: "Get_Line_Status", tag: "Line", method: "GET", path: "/Line/{ids}/Status/{StartDate}/to/{EndDate}", hasBody: false)
+        
 
         public final class Request: APIRequest<Response> {
+            
+            
 
             public struct Options {
+                
 
+                
                 /** A comma-separated list of line ids e.g. victoria,circle,N133. Max. approx. 20 ids. */
+                
                 public var ids: [String]
+                
 
+                
                 /** Include details of the disruptions that are causing the line status including the affected stops and routes */
+                
                 public var detail: Bool?
+                
 
+                
                 public var startDate: String
+                
 
+                
                 public var endDate: String
+                
 
+                
                 public var dateRangeStartDate: DateTime?
+                
 
+                
                 public var dateRangeEndDate: DateTime?
+                
 
                 public init(ids: [String], detail: Bool? = nil, startDate: String, endDate: String, dateRangeStartDate: DateTime? = nil, dateRangeEndDate: DateTime? = nil) {
+                    
                     self.ids = ids
+                    
                     self.detail = detail
+                    
                     self.startDate = startDate
+                    
                     self.endDate = endDate
+                    
                     self.dateRangeStartDate = dateRangeStartDate
+                    
                     self.dateRangeEndDate = dateRangeEndDate
+                    
                 }
             }
 
             public var options: Options
+            
+            
 
             public init(options: Options) {
+                
+                
                 self.options = options
+                
                 super.init(service: GetLineStatus.service)
             }
+            
 
             /// convenience initialiser so an Option doesn't have to be created
             public convenience init(ids: [String], detail: Bool? = nil, startDate: String, endDate: String, dateRangeStartDate: DateTime? = nil, dateRangeEndDate: DateTime? = nil) {
+                
                 let options = Options(ids: ids, detail: detail, startDate: startDate, endDate: endDate, dateRangeStartDate: dateRangeStartDate, dateRangeEndDate: dateRangeEndDate)
+                
                 self.init(options: options)
             }
+            
+            
 
             public override var path: String {
                 return super.path.replacingOccurrences(of: "{" + "ids" + "}", with: "\(self.options.ids.joined(separator: ","))")
             }
+            
+            
 
             public override var parameters: [String: Any] {
                 var params: [String: Any] = [:]
+                
+                
                 if let detail = options.detail {
                   params["detail"] = detail
                 }
+                
+                
+                
                 params["startDate"] = options.startDate
+                
+                
+                
                 params["endDate"] = options.endDate
+                
+                
+                
                 if let dateRangeStartDate = options.dateRangeStartDate?.encode() {
                   params["dateRange.startDate"] = dateRangeStartDate
                 }
+                
+                
+                
                 if let dateRangeEndDate = options.dateRangeEndDate?.encode() {
                   params["dateRange.endDate"] = dateRangeEndDate
                 }
+                
+                
                 return params
             }
+            
         }
 
         public enum Response: APIResponseValue, CustomStringConvertible, CustomDebugStringConvertible {
+            
+            
             public typealias SuccessType = [Line]
+            
+            
 
             /** OK */
+            
+            
             case status200([Line])
+            
+            
 
             public var success: [Line]? {
                 switch self {
+                
+                
                 case .status200(let response): return response
+                
+                
+                
                 }
             }
+            
 
             public var response: Any {
                 switch self {
+                
                 case .status200(let response): return response
+                
+                
                 }
             }
 
             public var statusCode: Int {
                 switch self {
+                
+                
                 case .status200: return 200
+                
+                
                 }
             }
 
             public var successful: Bool {
                 switch self {
+                
                 case .status200: return true
+                
                 }
             }
 
             public init(statusCode: Int, data: Data) throws {
+                
                 let decoder = JSONDecoder()
+                
                 switch statusCode {
+                
+                
                 case 200: self = try .status200(decoder.decode([Line].self, from: data))
+                
+                
+                
                 default: throw APIError.unexpectedStatusCode(statusCode: statusCode, data: data)
+                
                 }
             }
 
