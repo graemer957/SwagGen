@@ -11,7 +11,7 @@ class GenerateCommand: Command {
     let name = "generate"
     let shortDescription = "Generates code for a Swagger spec"
 
-    let spec = SwiftCLI.Parameter()
+    let spec = SwiftCLI.Param<String>()
 
     let clean = Key<Generator.Clean>("--clean", "-c", description: "How the destination directory will be cleaned of non generated files:\n\(String(repeating: " ", count: 31)) - none: no files will be removed\n\(String(repeating: " ", count: 31)) - leave.files: all other files will be removed except if starting with . in the destination directory\n\(String(repeating: " ", count: 31)) - all: all other files will be removed")
 
@@ -23,8 +23,8 @@ class GenerateCommand: Command {
 
     let options = VariadicKey<String>("--option", "-o", description: "An option that will be merged with template options, and overwrite any options of the same name.\n\(String(repeating: " ", count: 31))Can be repeated multiple times and must in the format --option \"name:value\"")
 
-    let verbose = Flag("--verbose", "-v", description: "Show verbose output", defaultValue: false)
-    let silent = Flag("--silent", "-s", description: "Silence standard output", defaultValue: false)
+    let verbose = Flag("--verbose", "-v", description: "Show verbose output")
+    let silent = Flag("--silent", "-s", description: "Silence standard output")
 
     func execute() throws {
         let clean = self.clean.value ?? .none
@@ -45,7 +45,7 @@ class GenerateCommand: Command {
         }
 
         var options: [String: Any] = [:]
-        for option in self.options.values {
+        for option in self.options.value {
             guard option.contains(":") else {
                 exitWithError("Options arguement '\(option)' must be comma delimited and the name and value must be seperated by a colon")
             }
