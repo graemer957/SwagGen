@@ -14,8 +14,8 @@ public struct ObjectSchema {
 extension ObjectSchema: JSONObjectConvertible {
 
     public init(jsonDictionary: JSONDictionary) throws {
-        let requiredPropertyNames: [String] = (jsonDictionary.json(atKeyPath: "required")) ?? []
-        let propertiesByName: [String: Schema] = (jsonDictionary.json(atKeyPath: "properties")) ?? [:]
+        let requiredPropertyNames: [String] = jsonDictionary.json(atKeyPath: "required") ?? []
+        let propertiesByName: [String: Schema] = jsonDictionary.json(atKeyPath: "properties") ?? [:]
 
         requiredProperties = requiredPropertyNames.compactMap { name in
             if let schema = propertiesByName[name] {
@@ -37,6 +37,6 @@ extension ObjectSchema: JSONObjectConvertible {
         maxProperties = jsonDictionary.json(atKeyPath: "maxProperties")
         additionalProperties = AdditionalProperties(jsonDictionary: jsonDictionary, key: "additionalProperties")
         discriminator = jsonDictionary.json(atKeyPath: "discriminator")
-        abstract = (jsonDictionary.json(atKeyPath: "x-abstract")) ?? false
+        abstract = jsonDictionary.json(atKeyPath: "x-abstract") ?? false
     }
 }

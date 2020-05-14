@@ -45,12 +45,12 @@ extension Operation {
         self.path = path
         self.method = method
         self.pathParameters = pathParameters
-        operationParameters = (jsonDictionary.json(atKeyPath: "parameters")) ?? []
+        operationParameters = jsonDictionary.json(atKeyPath: "parameters") ?? []
         summary = jsonDictionary.json(atKeyPath: "summary")
         description = jsonDictionary.json(atKeyPath: "description")
 
         identifier = jsonDictionary.json(atKeyPath: "operationId")
-        tags = (jsonDictionary.json(atKeyPath: "tags")) ?? []
+        tags = jsonDictionary.json(atKeyPath: "tags") ?? []
         security = jsonDictionary.json(atKeyPath: "security")
 
         let allResponses: [String: PossibleReference<Response>] = try jsonDictionary.json(atKeyPath: "responses")
@@ -80,6 +80,6 @@ extension Operation {
             }
         }
 
-        deprecated = (jsonDictionary.json(atKeyPath: "deprecated")) ?? false
+        deprecated = jsonDictionary.json(atKeyPath: "deprecated") ?? false
     }
 }

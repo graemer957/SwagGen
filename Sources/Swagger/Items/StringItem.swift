@@ -46,6 +46,6 @@ extension StringItem {
     public init(jsonDictionary: JSONDictionary) {
         format = jsonDictionary.json(atKeyPath: "format")
         maxLength = jsonDictionary.json(atKeyPath: "maxLength")
-        minLength = (jsonDictionary.json(atKeyPath: "minLength")) ?? 0
+        minLength = jsonDictionary.json(atKeyPath: "minLength") ?? 0
     }
 }

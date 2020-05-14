@@ -29,10 +29,10 @@ extension ArrayItem: JSONObjectConvertible {
 
     public init(jsonDictionary: JSONDictionary) throws {
         items = try jsonDictionary.json(atKeyPath: "items")
-        collectionFormat = (jsonDictionary.json(atKeyPath: "collectionFormat")) ?? .csv
+        collectionFormat = jsonDictionary.json(atKeyPath: "collectionFormat") ?? .csv
 
         maxItems = jsonDictionary.json(atKeyPath: "maxItems")
-        minItems = (jsonDictionary.json(atKeyPath: "minItems"))
-        uniqueItems = (jsonDictionary.json(atKeyPath: "uniqueItems")) ?? false
+        minItems = jsonDictionary.json(atKeyPath: "minItems")
+        uniqueItems = jsonDictionary.json(atKeyPath: "uniqueItems") ?? false
     }
 }

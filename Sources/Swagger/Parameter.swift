@@ -37,7 +37,7 @@ extension Parameter: JSONObjectConvertible {
         name = try jsonDictionary.json(atKeyPath: "name")
         location = try jsonDictionary.json(atKeyPath: "in")
         description = jsonDictionary.json(atKeyPath: "description")
-        required = (jsonDictionary.json(atKeyPath: "required")) ?? false
+        required = jsonDictionary.json(atKeyPath: "required") ?? false
         example = jsonDictionary.json(atKeyPath: "x-example")
 
         switch location {

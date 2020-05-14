@@ -72,7 +72,7 @@ public class SwiftFormatter: CodeFormatter {
 
     let fixedWidthIntegers: Bool
 
-    public override init(spec: SwaggerSpec, templateConfig: TemplateConfig) {
+    override public init(spec: SwaggerSpec, templateConfig: TemplateConfig) {
         fixedWidthIntegers = templateConfig.getBooleanOption("fixedWidthIntegers")
         super.init(spec: spec, templateConfig: templateConfig)
     }
@@ -235,7 +235,7 @@ public class SwiftFormatter: CodeFormatter {
 
         let jsonTypes = ["Any", "[String: Any]", "Int", "String", "Float", "Double", "Bool"]
 
-        if !jsonTypes.contains(type) && !jsonTypes.map({ "[\($0)]" }).contains(type) && !jsonTypes.map({ "[String: \($0)]" }).contains(type) {
+        if !jsonTypes.contains(type), !jsonTypes.map({ "[\($0)]" }).contains(type), !jsonTypes.map({ "[String: \($0)]" }).contains(type) {
             if type.hasPrefix("[[") {
                 encodedValue += ".map({ $0.encode() })"
             } else if type.hasPrefix("[String: [") {

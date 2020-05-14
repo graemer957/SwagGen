@@ -19,7 +19,7 @@ extension Metadata: JSONObjectConvertible {
         description = jsonDictionary.json(atKeyPath: "description")
         defaultValue = jsonDictionary.json(atKeyPath: "default")
         enumeratedValues = jsonDictionary["enum"] as? [Any]
-        nullable = (jsonDictionary.json(atKeyPath: "x-nullable")) ?? false
+        nullable = jsonDictionary.json(atKeyPath: "x-nullable") ?? false
         example = jsonDictionary.json(atKeyPath: "example")
         json = jsonDictionary
     }

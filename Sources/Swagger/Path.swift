@@ -11,7 +11,7 @@ extension Path: NamedMappable {
 
     public init(name: String, jsonDictionary: JSONDictionary) throws {
         path = name
-        parameters = (jsonDictionary.json(atKeyPath: "parameters")) ?? []
+        parameters = jsonDictionary.json(atKeyPath: "parameters") ?? []
 
         var mappedOperations: [Operation] = []
         for (key, value) in jsonDictionary {

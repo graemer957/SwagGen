@@ -105,7 +105,7 @@ class GenerateCommand: Command {
             }
 
             spec = try SwaggerSpec(url: specURL)
-        } catch let error {
+        } catch {
             exitWithError("Error loading Swagger Spec: \(error)")
         }
 
@@ -126,7 +126,7 @@ class GenerateCommand: Command {
         let templateConfig: TemplateConfig
         do {
             templateConfig = try TemplateConfig(path: templatePath.normalize(), options: options)
-        } catch let error {
+        } catch {
             exitWithError("Error loading template: \(error)")
         }
 
@@ -194,7 +194,7 @@ class GenerateCommand: Command {
                 }
             }
             standardOut("Generation complete: \(generationResult)")
-        } catch let error {
+        } catch {
             exitWithError("Error generating code: \(error)")
         }
     }
