@@ -21,6 +21,21 @@ public class Generator {
         filterExtension.registerFilter("lowerCamelCase") { ($0 as? String)?.lowerCamelCased() ?? $0 }
         filterExtension.registerFilter("upperCamelCase") { ($0 as? String)?.upperCamelCased() ?? $0 }
 
+        filterExtension.registerFilter("contains") { (value: Any?, arguments: [Any?]) in
+            guard arguments.count < 2 else {
+                throw TemplateSyntaxError("'contains' filter takes at most one argument")
+            }
+            guard let string = arguments.first as? String else {
+                throw TemplateSyntaxError("'contains' filter argument must be a string")
+            }
+            guard let lhs = value as? String else {
+                return false
+            }
+            if lhs.lowercased().contains(string.lowercased()) { return true }
+
+            return false
+        }
+
         environment = Environment(loader: FileSystemLoader(paths: [templateConfig.basePath]), extensions: [filterExtension])
     }
 
