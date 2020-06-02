@@ -36,6 +36,22 @@ public class Generator {
             return false
         }
 
+        filterExtension.registerFilter("in") { (value: Any?, arguments: [Any?]) in
+            guard arguments.count < 2 else {
+                throw TemplateSyntaxError("'in' filter takes at most one argument")
+            }
+            guard let string = arguments.first as? String else {
+                throw TemplateSyntaxError("'in' filter argument must be a string with a comma seperated list of values")
+            }
+            let array = string.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces).lowercased() }
+            guard let lhs = value as? String else {
+                return false
+            }
+            if array.contains(lhs.lowercased()) { return true }
+
+            return false
+        }
+
         environment = Environment(loader: FileSystemLoader(paths: [templateConfig.basePath]), extensions: [filterExtension])
     }
 
